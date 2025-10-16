@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>身份验证</title>
+    <style>
+        body { 
+            text-align: center; 
+            font-family: Arial, sans-serif; 
+            margin-top: 100px;
+            background: #f0f0f0;
+        }
+        button { 
+            margin: 10px; 
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #passwordSection {
+            margin-top: 20px;
+        }
+        input {
+            padding: 8px;
+            margin: 10px;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        .game-link {
+            margin-top: 30px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>你是我的同学吗？</h1>
+    <div>
+        <button onclick="showPasswordInput()">是</button>
+        <button onclick="showError()">不是</button>
+    </div>
+
+    <div id="passwordSection" style="display:none;">
+        <input type="password" id="passwordInput" placeholder="输入密码">
+        <button onclick="checkPassword()">提交</button>
+        <div id="errorMsg" class="error"></div>
+    </div>
+
+    <script>
+        const correctPassword = "CNM888";
+        
+        function showPasswordInput() {
+            document.getElementById('passwordSection').style.display = 'block';
+            document.getElementById('errorMsg').innerText = '';
+        }
+        
+        function showError() {
+            document.body.innerHTML = "<h1>那你来这儿干嘛？滚</h1>";
+        }
+        
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value;
+            if (input === correctPassword) {
+                document.body.innerHTML = `
+                    <h1>欢迎你来到我的网站</h1>
+                    <div class="game-link">
+                        <p>觉得无聊？去玩点游戏：</p>
+                        <a href="https://www.Poki.com" target="_blank"> Poki - 在线小游戏合集</a>
+                        <p>或者：</p>
+                        <a href="https://www.crazygames.com" target="_blank">Crazy Games - 在线小游戏合集</a>
+                        <p>↑最好别玩，可能有bug进不去，而且全英文的</p>
+                        <p>或者说这还有我的世界(版本有点老)</p>
+                        <a href="https://www.mc.js.cool/"> 我的世界 - 网页版
+                        <p>-----------------------------------------------</p>
+                        <p>要不然你刷个视频也行：</p>
+                        <a href="https://www.bilibili.com" target="_blank"> 哔哩哔哩 - 网页版</a>
+                        <p>-----------------------------------------------</p>
+                        <p>还是无聊的话，你自己做个网站</p>
+                        <a href="https://www.github.com" target="_blank"> GitHub - 网页版
+                        <p>别问我GitHub是什么？问就是你到学校了当面问我</p>
+                    </div>
+                `;
+            } else {
+                document.getElementById('errorMsg').innerText = '密码错误，再试一次';
+                document.getElementById('passwordInput').value = '';
+                document.getElementById('passwordInput').focus();
+            }
+        }
+    </script>
+</body>
+</html>
